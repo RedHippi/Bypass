@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - IconRep
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Inner Taskbar
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Burger King Foot Lettuce
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Windows
+    uniqueID: 816881513
+    locked: 0
+  - name: WindowSelected
+    uniqueID: 2699180633
+    locked: 0
+  - name: Taskbar
+    uniqueID: 823741509
+    locked: 0
