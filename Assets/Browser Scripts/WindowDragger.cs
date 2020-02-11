@@ -27,4 +27,6 @@ public class WindowDragger : MonoBehaviour
     {
         //No snapping
     }
+
+    //TODO: Add "priority" on click; clicking on a window brings it to the front of the screen
 }

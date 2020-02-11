@@ -18,6 +18,6 @@ public class WindowManager : MonoBehaviour
 
     public void Minimize()
     {
-
+        //TODO
     }
 }
