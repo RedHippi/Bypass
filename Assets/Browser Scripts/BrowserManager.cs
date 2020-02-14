@@ -39,6 +39,8 @@ public class BrowserManager : MonoBehaviour
     private float minPageLoadingTime;
     private float maxPageLoadingTime;
     private Vector2 contentStartPosition;
+    private bool displaying = false;
+    private Coroutine co;
 
     void Start()
     {
@@ -91,6 +93,7 @@ public class BrowserManager : MonoBehaviour
 
     IEnumerator DisplayPage(GameObject obj)
     {
+        displaying = true;
         float loadTime = UnityEngine.Random.Range(minPageLoadingTime, maxPageLoadingTime);
         float totalTime = 0;
         int currentIndex = 0;
@@ -111,6 +114,7 @@ public class BrowserManager : MonoBehaviour
             yield return null;
         }
 
+        displaying = false;
         loadingIcon.SetActive(false);
         if (currentlyActive)
         {
@@ -137,13 +141,22 @@ public class BrowserManager : MonoBehaviour
 
     public void CheckURL(string url)
     {
-        if (sitesDic.ContainsKey(url))
+        if (!displaying)
         {
-            DisplayPageQuick(blankPage);
-            StartCoroutine(DisplayPage(sitesDic[url]));
+            if (sitesDic.ContainsKey(url))
+            {
+                DisplayPageQuick(blankPage);
+                co = StartCoroutine(DisplayPage(sitesDic[url]));
+            }
+            else
+            {
+                DisplayPageQuick(error404);
+            }
         } else
         {
-            DisplayPageQuick(error404);
+            displaying = false;
+            StopCoroutine(co);
+            CheckURL(url);
         }
     }
 }
