@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections;
 
 [Serializable]
 public class URLPair
@@ -22,6 +22,14 @@ public class BrowserManager : MonoBehaviour
     [SerializeField]
     [Tooltip("For non-default sites; that is, for sites that aren't error pages or home pages.")]
     private List<URLPair> sites;
+
+    [SerializeField]
+    private float minLoadingTime = 0;
+    [SerializeField]
+    private float maxLoadingTime = 0;
+    [SerializeField]
+    private GameObject loadingIcon;
+
     private Dictionary<string, GameObject> sitesDic;
     private ScrollRect scrollComp;
     private GameObject currentlyActive; //Should always be only one
@@ -38,10 +46,32 @@ public class BrowserManager : MonoBehaviour
         }
 
         error404.SetActive(false);
-        DisplayPage(homePage);
+        loadingIcon.SetActive(false);
+        DisplayPageQuick(homePage);
     }
 
-    void DisplayPage(GameObject obj)
+    IEnumerator DisplayPage(GameObject obj)
+    {
+        float loadTime = UnityEngine.Random.Range(minLoadingTime, maxLoadingTime);
+        float passedTime = 0;
+        loadingIcon.SetActive(true);
+
+        while (passedTime < loadTime)
+        {
+            passedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        loadingIcon.SetActive(false);
+        if (currentlyActive) { currentlyActive.SetActive(false); }
+        obj.SetActive(true);
+        currentlyActive = obj;
+        scrollComp.content = obj.GetComponent<RectTransform>();
+
+        yield break;
+    }
+
+    void DisplayPageQuick(GameObject obj)
     {
         if (currentlyActive) { currentlyActive.SetActive(false); }
         obj.SetActive(true);
@@ -53,12 +83,13 @@ public class BrowserManager : MonoBehaviour
     {
         if (sitesDic.ContainsKey(url))
         {
-            DisplayPage(sitesDic[url]);
+            StartCoroutine(DisplayPage(sitesDic[url]));
         } else
         {
-            DisplayPage(error404);
+            DisplayPageQuick(error404);
         }
     }
 
     //IDEAS: Add a loading bar and some buffer "loading time" to make it look better?
+    //IDEAS: Make the page load in chunks, like back in the day
 }
