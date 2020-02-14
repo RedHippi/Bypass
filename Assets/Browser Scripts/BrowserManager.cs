@@ -14,15 +14,18 @@ public class URLPair
 
 public class BrowserManager : MonoBehaviour
 {
-
+    [Header("Important Pages")]
+    [SerializeField]
+    private GameObject blankPage;
     [SerializeField]
     private GameObject homePage;
     [SerializeField]
     private GameObject error404;
     [SerializeField]
     [Tooltip("For non-default sites; that is, for sites that aren't error pages or home pages.")]
-    private List<URLPair> sites;
 
+    [Header("Site Stuff")]
+    private List<URLPair> sites;
     [SerializeField]
     private float minLoadingTime = 0;
     [SerializeField]
@@ -45,6 +48,7 @@ public class BrowserManager : MonoBehaviour
             sites[i].site.SetActive(false);
         }
 
+        blankPage.SetActive(false);
         error404.SetActive(false);
         loadingIcon.SetActive(false);
         DisplayPageQuick(homePage);
@@ -83,6 +87,7 @@ public class BrowserManager : MonoBehaviour
     {
         if (sitesDic.ContainsKey(url))
         {
+            DisplayPageQuick(blankPage);
             StartCoroutine(DisplayPage(sitesDic[url]));
         } else
         {
