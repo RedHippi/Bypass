@@ -6,10 +6,13 @@ using System.Collections;
 using UnityEngine.Assertions;
 
 [Serializable]
-public class URLPair
+public class Site
 {
     public string url;
     public GameObject site;
+    [Tooltip("Left value is the minimum time, right is the maximum.")]
+    public bool displayQuick = false;
+    public Vector2 totalLoadingRange = new Vector2(1,4);
 }
 
 
@@ -26,35 +29,25 @@ public class BrowserManager : MonoBehaviour
     [Tooltip("For non-default sites; that is, for sites that aren't error pages or home pages.")]
 
     [Header("Site Stuff")]
-    private List<URLPair> sites;
-    [SerializeField]
-    [Tooltip("Left value is the minimum time, right is the maximum.")]
-    private Vector2 totalLoadingRange;
+    private List<Site> sites;
     [SerializeField]
     private GameObject loadingIcon;
 
-    private Dictionary<string, GameObject> sitesDic;
+    private Dictionary<string, Site> sitesDic;
     private ScrollRect scrollComp;
     private GameObject currentlyActive; //Should always be only one
-    private float minPageLoadingTime;
-    private float maxPageLoadingTime;
     private Vector2 contentStartPosition;
     private bool displaying = false;
     private Coroutine co;
 
     void Start()
     {
-        minPageLoadingTime = totalLoadingRange.x;
-        maxPageLoadingTime = totalLoadingRange.y;
-        Assert.IsTrue(minPageLoadingTime < maxPageLoadingTime);
-        Assert.IsTrue(minPageLoadingTime >= 0 && maxPageLoadingTime >= 0);
-
         scrollComp = this.transform.GetComponent<ScrollRect>();
-        sitesDic = new Dictionary<string, GameObject>();
+        sitesDic = new Dictionary<string, Site>();
 
         for(int i = 0; i < sites.Count; i++)
         {
-            sitesDic.Add(sites[i].url, sites[i].site);
+            sitesDic.Add(sites[i].url, sites[i]);
             sites[i].site.SetActive(false);
         }
 
@@ -64,9 +57,9 @@ public class BrowserManager : MonoBehaviour
         DisplayPageQuick(homePage);
     }
 
-    //I want the load time per element on a website to be random, so
+    //I want the load time per element on a website to be slightly random, so
     //this function generates a wait period per element. 
-    void GenerateRandomSplit(float target, float[] output)
+    private void GenerateRandomSplit(float target, float[] output)
     {
         float total = 0;
         for(int i = 0; i < output.Length; i++)
@@ -83,7 +76,7 @@ public class BrowserManager : MonoBehaviour
         }
     }
 
-    void DeactivateChildren(GameObject obj)
+    private void DeactivateChildren(GameObject obj)
     {
         for(int i = 0; i < obj.transform.childCount; i++)
         {
@@ -91,14 +84,17 @@ public class BrowserManager : MonoBehaviour
         }
     }
 
-    IEnumerator DisplayPage(GameObject obj)
+    IEnumerator DisplayPage(Site site)
     {
+        GameObject obj = site.site; //holy shit
+        if(site.displayQuick) { DisplayPageQuick(obj); yield break; }
         displaying = true;
-        float loadTime = UnityEngine.Random.Range(minPageLoadingTime, maxPageLoadingTime);
+        float loadTime = UnityEngine.Random.Range(site.totalLoadingRange.x, site.totalLoadingRange.y);
         float totalTime = 0;
         int currentIndex = 0;
+
         loadingIcon.SetActive(true);
-        obj.SetActive(true);
+        DisplayPageQuick(obj); //Same set-up, so why not?
         float[] waitArr = new float[obj.transform.childCount]; //child count > 0
         DeactivateChildren(obj);
         GenerateRandomSplit(loadTime, waitArr);
@@ -116,18 +112,10 @@ public class BrowserManager : MonoBehaviour
 
         displaying = false;
         loadingIcon.SetActive(false);
-        if (currentlyActive)
-        {
-            currentlyActive.GetComponent<RectTransform>().anchoredPosition = contentStartPosition;
-            currentlyActive.SetActive(false);
-        }
-        currentlyActive = obj;
-        scrollComp.content = obj.GetComponent<RectTransform>();
-        contentStartPosition = obj.GetComponent<RectTransform>().anchoredPosition;
         yield break;
     }
 
-    void DisplayPageQuick(GameObject obj)
+    private void DisplayPageQuick(GameObject obj)
     {
         if (currentlyActive) {
             currentlyActive.GetComponent<RectTransform>().anchoredPosition = contentStartPosition;
@@ -145,7 +133,6 @@ public class BrowserManager : MonoBehaviour
         {
             if (sitesDic.ContainsKey(url))
             {
-                DisplayPageQuick(blankPage);
                 co = StartCoroutine(DisplayPage(sitesDic[url]));
             }
             else
@@ -156,6 +143,7 @@ public class BrowserManager : MonoBehaviour
         {
             displaying = false;
             StopCoroutine(co);
+            loadingIcon.SetActive(false);
             CheckURL(url);
         }
     }
