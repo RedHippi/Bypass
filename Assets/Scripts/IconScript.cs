@@ -100,8 +100,7 @@ public class IconScript : MonoBehaviour
         isOver = false;
     }
 
-    
-
+   
     private void OnMouseUp()
     {
         Vector2 ObjPos = GetMousePosition();
