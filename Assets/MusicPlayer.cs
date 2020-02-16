@@ -9,12 +9,18 @@ public class MusicPlayer : MonoBehaviour
     private bool is_paused;
     private bool from_start;
 
+    private void Awake()
+    {
+        player = GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         player.loop = false;
         is_paused = false;
         from_start = true;
+        Debug.Log(player);
     }
 
     // Update is called once per frame
@@ -27,18 +33,18 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    void SetTrack(AudioClip track)
+    public void SetTrack(AudioClip track)
     {
         player.Stop();
         player.clip = track;
     }
 
-    void ToggleLoop()
+    public void ToggleLoop()
     {
         player.loop = !player.loop;
     }
 
-    void Play()
+    public void Play()
     {
         if (player.clip != null)
         {
@@ -65,7 +71,7 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    void Stop() 
+    public void Stop() 
     {
         if (player.clip != null)
         {
@@ -74,7 +80,7 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    void SetVolume(float vol)
+    public void SetVolume(float vol)
     {
         player.volume = Mathf.Max(0f, Mathf.Min(1f, vol));
     }
