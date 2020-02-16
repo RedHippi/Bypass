@@ -10,11 +10,10 @@ public class Site
 {
     public string url;
     public GameObject site;
-    [Tooltip("Left value is the minimum time, right is the maximum.")]
     public bool displayQuick = false;
+    [Tooltip("Left value is the minimum time, right is the maximum.")]
     public Vector2 totalLoadingRange = new Vector2(1,4);
 }
-
 
 public class BrowserManager : MonoBehaviour
 {
@@ -25,10 +24,9 @@ public class BrowserManager : MonoBehaviour
     private GameObject homePage;
     [SerializeField]
     private GameObject error404;
-    [SerializeField]
-    [Tooltip("For non-default sites; that is, for sites that aren't error pages or home pages.")]
 
     [Header("Site Stuff")]
+    [SerializeField]
     private List<Site> sites;
     [SerializeField]
     private GameObject loadingIcon;
