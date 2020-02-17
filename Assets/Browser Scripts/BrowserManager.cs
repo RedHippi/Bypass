@@ -9,6 +9,9 @@ using UnityEngine.Assertions;
 public class Site
 {
     public string url;
+    [Tooltip("If Display Quick is set to true, this site will not be added to the history page.")]
+    [TextArea]
+    public string historyText = "Default description!";
     public GameObject site;
     public bool displayQuick = false;
     [Tooltip("Left value is the minimum time, right is the maximum.")]
@@ -24,6 +27,8 @@ public class BrowserManager : MonoBehaviour
     private GameObject homePage;
     [SerializeField]
     private GameObject error404;
+    [SerializeField]
+    private HistoryManager history;
 
     [Header("Site Stuff")]
     [SerializeField]
@@ -37,6 +42,7 @@ public class BrowserManager : MonoBehaviour
     private Vector2 contentStartPosition;
     private bool displaying = false;
     private Coroutine co;
+    private Date currentDate;
 
     void Start()
     {
@@ -53,6 +59,11 @@ public class BrowserManager : MonoBehaviour
         error404.SetActive(false);
         loadingIcon.SetActive(false);
         DisplayPageQuick(homePage);
+
+        //Later on, fetch and update this date from the clock
+        currentDate.day = 17;
+        currentDate.month = Date.Month.February;
+        currentDate.year = 2020;
     }
 
     //I want the load time per element on a website to be slightly random, so
@@ -86,6 +97,7 @@ public class BrowserManager : MonoBehaviour
     {
         GameObject obj = site.site; //holy shit
         if(site.displayQuick) { DisplayPageQuick(obj); yield break; }
+        history.UpdateHistory(site, currentDate);
         displaying = true;
         float loadTime = UnityEngine.Random.Range(site.totalLoadingRange.x, site.totalLoadingRange.y);
         float totalTime = 0;
@@ -127,7 +139,6 @@ public class BrowserManager : MonoBehaviour
 
     public void CheckURL(string url)
     {
-        //TODO: Add visited websites to history
         if (!displaying)
         {
             if (sitesDic.ContainsKey(url))

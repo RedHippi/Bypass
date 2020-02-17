@@ -33,8 +33,6 @@ public class HistoryManager : MonoBehaviour
     public List<Visited> pastSites;
     public TMPro.TextMeshProUGUI textPrefab;
     public GameObject linkPrefab;
-    private GameObject historySite;
-    private VerticalLayoutGroup verticalLayout;
     public BrowserManager browser;
     public TMPro.TMP_InputField searchBar;
 
@@ -43,10 +41,17 @@ public class HistoryManager : MonoBehaviour
     public int headerSize;
     //Fonts?
 
+    private GameObject historySite;
+    private VerticalLayoutGroup verticalLayout;
+    private ContentSizeFitter sizeFitter;
+
     private void Start()
     {
         historySite = this.transform.gameObject;
         verticalLayout = historySite.GetComponent<VerticalLayoutGroup>();
+        sizeFitter = historySite.GetComponent<ContentSizeFitter>();
+
+        //Should probably sort, then push to a stack. But I doubt this is a problem.
         pastSites.Sort((s1, s2) => CompareDates(s1.dateVisited, s2.dateVisited));
         CreateLinks();
     }
@@ -96,6 +101,15 @@ public class HistoryManager : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(verticalLayout.GetComponent<RectTransform>());
     }
 
+    void RemoveChildren()
+    {
+        int childCount = historySite.transform.childCount;
+        for (int i = childCount - 1; i >= 0; --i)
+        {
+            GameObject.Destroy(historySite.transform.GetChild(i).gameObject);
+        }
+    }
+
     private int CompareDates(Date x, Date y)
     {
         if (x.year > y.year) { return -1; }
@@ -108,6 +122,18 @@ public class HistoryManager : MonoBehaviour
         else if (x.day < y.day) { return 1; }
 
         return 0;
+    }
+
+    public void UpdateHistory(Site site, Date date)
+    {
+        Visited visit = new Visited();
+        visit.url = site.url;
+        visit.displayedText = site.historyText;
+        visit.dateVisited = date;
+
+        pastSites.Insert(0, visit);
+        RemoveChildren();
+        CreateLinks();
     }
 
     //TODO: Add padding from the left, looks ugly as is.
