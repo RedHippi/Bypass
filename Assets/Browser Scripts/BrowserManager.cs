@@ -127,6 +127,7 @@ public class BrowserManager : MonoBehaviour
 
     public void CheckURL(string url)
     {
+        //TODO: Add visited websites to history
         if (!displaying)
         {
             if (sitesDic.ContainsKey(url))

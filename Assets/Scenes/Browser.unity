@@ -365,6 +365,8 @@ GameObject:
   - component: {fileID: 226760620}
   - component: {fileID: 226760622}
   - component: {fileID: 226760621}
+  - component: {fileID: 226760625}
+  - component: {fileID: 226760624}
   - component: {fileID: 226760623}
   m_Layer: 5
   m_Name: History
@@ -387,11 +389,11 @@ RectTransform:
   m_Father: {fileID: 1764326799}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0000000041129655, y: -0.66648656}
-  m_AnchorMax: {x: 1.0035435, y: 0.999772}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000030517578, y: -0.0000076293945}
+  m_SizeDelta: {x: 0.000061035156, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &226760621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +442,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87afdd60398716d4eb2a527e30cfff1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pastSites: []
+  pastSites:
+  - url: www.test.com
+    displayedText: No, this is the limit!
+    dateVisited:
+      day: 9
+      month: 0
+      year: 2014
+  - url: www.buffer.com
+    displayedText: Test Two!
+    dateVisited:
+      day: 9
+      month: 9
+      year: 2015
+  - url: www.buffer.com
+    displayedText: I'm pushing it!
+    dateVisited:
+      day: 8
+      month: 9
+      year: 2013
+  - url: www.buffer.com
+    displayedText: Same link as before...
+    dateVisited:
+      day: 8
+      month: 9
+      year: 2013
+  textPrefab: {fileID: 1126239806671631100, guid: 83f6502d4c5a9fe4d9d94df8033afaa8,
+    type: 3}
+  linkPrefab: {fileID: 921570600244517244, guid: 1028f7c8612b0844f9fbeb7d8051361f,
+    type: 3}
+  browser: {fileID: 1421896223}
+  searchBar: {fileID: 386879705}
+  linkSize: 24
+  headerSize: 36
+--- !u!114 &226760624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226760619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
+--- !u!114 &226760625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226760619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+--- !u!114 &386879705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1927451915112779869, guid: 0eb6c6abd419f004c923c1e035241a19,
+    type: 3}
+  m_PrefabInstance: {fileID: 1421896220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &401003821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,6 +1912,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: 'TODO: Add character limit...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927451916175000688, guid: 0eb6c6abd419f004c923c1e035241a19,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1927451916456011521, guid: 0eb6c6abd419f004c923c1e035241a19,
         type: 3}
