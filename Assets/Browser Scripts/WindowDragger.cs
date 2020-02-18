@@ -10,6 +10,8 @@ public class WindowDragger : MonoBehaviour
 
     private GameObject parentWindow;
     private Vector2 difference;
+    private bool dragging = false;
+    private Vector2 offset;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +22,18 @@ public class WindowDragger : MonoBehaviour
 
     public void OnDrag(PointerEventData eventData)
     {
-        parentWindow.transform.position = eventData.position + difference;
+        if (!dragging)
+        {
+            dragging = true;
+            //Left/right offset
+            offset = (Vector2)this.transform.position - eventData.pressPosition;
+        }
+        parentWindow.transform.position = eventData.position + difference + offset;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        //No snapping
+        dragging = false;
     }
 
     //TODO: Add "priority" on click; clicking on a window brings it to the front of the screen

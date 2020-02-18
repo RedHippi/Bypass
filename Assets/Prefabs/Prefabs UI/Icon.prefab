@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684f5f5229a9d9945abcbf6ac26e770e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskbar: {fileID: 1133254626762997234, guid: e7e59f325101d27489101bf4b40083e8, type: 3}
   windowPrefab: {fileID: 6481577056985824119, guid: 572c08323239e6747bb00619db9834fb,
     type: 3}
 --- !u!222 &5618775058850870089
