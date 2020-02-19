@@ -56,6 +56,22 @@ public class HistoryManager : MonoBehaviour
         CreateLinks();
     }
     
+    private void InsertKeepSorted(Visited visit)
+    {
+        Date date = visit.dateVisited;
+
+        for(int i = 0; i < pastSites.Count; i++)
+        {
+            if(CompareDates(date, pastSites[i].dateVisited) == -1)
+            {
+                pastSites.Insert(i, visit);
+                return;
+            }
+        }
+
+        pastSites.Add(visit); //Oldest date, so add it to the end.
+    }
+
     private void CreateHeader(Date date)
     {
         TMPro.TextMeshProUGUI header = Instantiate(textPrefab) as TMPro.TextMeshProUGUI;
@@ -110,6 +126,7 @@ public class HistoryManager : MonoBehaviour
         }
     }
 
+    //0 means the dates are equal. -1 means x is more recent.
     private int CompareDates(Date x, Date y)
     {
         if (x.year > y.year) { return -1; }
@@ -124,14 +141,15 @@ public class HistoryManager : MonoBehaviour
         return 0;
     }
 
-    public void UpdateHistory(Site site, Date date)
+    public void UpdateHistory(Site site)
     {
         Visited visit = new Visited();
+        Date current = FindObjectOfType<SetDate>().currentDate;
         visit.url = site.url;
         visit.displayedText = site.historyText;
-        visit.dateVisited = date;
+        visit.dateVisited = current;
 
-        pastSites.Insert(0, visit);
+        InsertKeepSorted(visit);
         RemoveChildren();
         CreateLinks();
     }

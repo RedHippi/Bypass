@@ -42,7 +42,6 @@ public class BrowserManager : MonoBehaviour
     private Vector2 contentStartPosition;
     private bool displaying = false;
     private Coroutine co;
-    private Date currentDate;
 
     void Start()
     {
@@ -60,10 +59,6 @@ public class BrowserManager : MonoBehaviour
         loadingIcon.SetActive(false);
         DisplayPageQuick(homePage);
 
-        //Later on, fetch and update this date from the clock
-        currentDate.day = 17;
-        currentDate.month = Date.Month.February;
-        currentDate.year = 2020;
     }
 
     //I want the load time per element on a website to be slightly random, so
@@ -97,7 +92,7 @@ public class BrowserManager : MonoBehaviour
     {
         GameObject obj = site.site; //holy shit
         if(site.displayQuick) { DisplayPageQuick(obj); yield break; }
-        history.UpdateHistory(site, currentDate);
+        history.UpdateHistory(site);
         displaying = true;
         float loadTime = UnityEngine.Random.Range(site.totalLoadingRange.x, site.totalLoadingRange.y);
         float totalTime = 0;
