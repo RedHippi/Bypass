@@ -1,23 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class WindowManager : MonoBehaviour
+                           , IPointerClickHandler
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    
-    public void DestroyAll()
+    //TODO: Switch to using TaskbarManager to focus
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
-        Destroy(this.transform.gameObject);
-    }
 
-    public void Minimize()
-    {
-        //TODO
+        this.transform.SetAsLastSibling();
     }
 }

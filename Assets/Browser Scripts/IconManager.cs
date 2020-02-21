@@ -6,15 +6,16 @@ public class IconManager : MonoBehaviour
                          , IDragHandler
                          , IEndDragHandler
 {
+    public TaskbarManager taskbar;
+    [SerializeField]
+    private GameObject windowPrefab;
 
     private bool selected = false;
     private GameObject icon;
-
-    [SerializeField]
-    private GameObject windowPrefab;
     private IconLayoutManager layout;
     private Vector2 initialPos;
     private bool dragging = false;
+
 
     void Start()
     {
@@ -33,8 +34,7 @@ public class IconManager : MonoBehaviour
             //Doesn't quite work; problems with scaling. But good for now.
             GameObject canvas = this.transform.parent.gameObject;
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2);
-            GameObject newWindow = Instantiate(windowPrefab, center, Quaternion.identity);
-            newWindow.transform.SetParent(canvas.transform);
+            taskbar.CreateWindow(windowPrefab, center);
         }
     }
 
@@ -53,5 +53,4 @@ public class IconManager : MonoBehaviour
         dragging = false;
         icon.transform.position = layout.CheckEndPosition(initialPos, eventData.position);
     }
-
 }
