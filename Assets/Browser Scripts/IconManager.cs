@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using TMPro;
 
 public class IconManager : MonoBehaviour
                          , IPointerClickHandler
@@ -16,6 +18,16 @@ public class IconManager : MonoBehaviour
     private Vector2 initialPos;
     private bool dragging = false;
 
+    //[HideInInspector]
+    public Sprite MyImage;
+    //[HideInInspector]
+    public string MyName;
+
+    void Awake()
+    {
+        MyImage = GetComponentInChildren<Image>().sprite;
+        MyName = GetComponentInChildren<TMP_Text>().text;
+    }
 
     void Start()
     {
