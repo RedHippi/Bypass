@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControlMaze : MonoBehaviour
 {
     public float speed = 5f;
+    public AudioClip collideAudio;
 
     private bool CanJump;
     private Rigidbody2D _body;
@@ -14,50 +15,17 @@ public class PlayerControlMaze : MonoBehaviour
     void Start()
     {
         _body = GetComponent<Rigidbody2D>();
+        GetComponent<AudioSource>().playOnAwake = false;
+        GetComponent<AudioSource>().clip = collideAudio;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        float vert = Input.GetAxis("Vertical");
-        float horz = Input.GetAxis("Horizontal");
-
-        Vector3 current = GetComponent<Rigidbody>().position;
-
-        GetComponent<Rigidbody>().position = new Vector3(horz * speed * Time.deltaTime, vert * speed * Time.deltaTime, 0) + current;
-        */
-
         // Calculate how fast we should be moving
         _inputs   = Vector3.zero;
         _inputs.x = Input.GetAxis("Horizontal");
         _inputs.y = Input.GetAxis("Vertical");
-
-        /*
-        if (_inputs != Vector3.zero)
-            transform.forward = _inputs;
-        */
-        /*
-        Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        targetVelocity = transform.TransformDirection(targetVelocity);
-        targetVelocity *= speed;
-
-        // Apply a force that attempts to reach our target velocity
-        Vector3 velocity = GetComponent<Rigidbody>().velocity;
-        Vector3 velocityChange = (targetVelocity - velocity);
-        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-        velocityChange.y = Mathf.Clamp(velocityChange.y, -maxVelocityChange, maxVelocityChange);
-        velocityChange.z = 0;
-        GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
-        */
-        /*
-        //Move Left
-        if(Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(-speed * Time.deltaTime, 0, 0);
-        }
-        //Move Right
-        if (Input.GetKey(KeyCode.D)) { /*Move Right} */
 
         //Jump
         if (Input.GetKey(KeyCode.Space) && CanJump) { /*Do a full routine */}
@@ -66,5 +34,10 @@ public class PlayerControlMaze : MonoBehaviour
     void FixedUpdate()
     {
         _body.transform.position += _inputs * Time.deltaTime * speed;
+    }
+
+    void OnCollisionEnter()  //Plays sound whenever collision detected
+    {
+        GetComponent<AudioSource>().Play();
     }
 }
