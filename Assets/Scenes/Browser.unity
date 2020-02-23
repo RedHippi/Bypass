@@ -479,7 +479,7 @@ PrefabInstance:
     - target: {fileID: 400017064042730896, guid: e7e59f325101d27489101bf4b40083e8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400017064042730896, guid: e7e59f325101d27489101bf4b40083e8,
         type: 3}
@@ -561,7 +561,12 @@ PrefabInstance:
         type: 3}
       propertyPath: windows
       value: 
-      objectReference: {fileID: 1915036367}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689419067777361143, guid: e7e59f325101d27489101bf4b40083e8,
+        type: 3}
+      propertyPath: dateDisplay
+      value: 
+      objectReference: {fileID: 660113716}
     - target: {fileID: 7398186232402264237, guid: e7e59f325101d27489101bf4b40083e8,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -620,6 +625,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 448381358}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &660113716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7398186232402264237, guid: e7e59f325101d27489101bf4b40083e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 448381358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &825402248 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1695523282450460188, guid: 0eb6c6abd419f004c923c1e035241a19,
@@ -750,7 +767,6 @@ RectTransform:
   - {fileID: 104686955}
   - {fileID: 98256195}
   - {fileID: 4849392394300182945}
-  - {fileID: 1915036368}
   - {fileID: 448381359}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1120,7 +1136,7 @@ PrefabInstance:
     - target: {fileID: 4849392392886696893, guid: 0eb6c6abd419f004c923c1e035241a19,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4849392392886696893, guid: 0eb6c6abd419f004c923c1e035241a19,
         type: 3}
@@ -1560,41 +1576,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1915036367
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1915036368}
-  m_Layer: 5
-  m_Name: Windows
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1915036368
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915036367}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1370217915}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: -0.000038388174, y: -0.0000030010715}
-  m_AnchorMax: {x: 1.0000325, y: 0.99999005}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2113673860
 GameObject:
   m_ObjectHideFlags: 0
