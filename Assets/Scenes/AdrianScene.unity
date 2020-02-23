@@ -212,13 +212,28 @@ GameObject:
   m_Component:
   - component: {fileID: 1375049870}
   - component: {fileID: 1375049869}
+  - component: {fileID: 1375049868}
   m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
+  m_Name: Adrian Camera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1375049868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375049867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09de38693e99246dd93d23c1215f3766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tp: {fileID: 11400000, guid: 56eacd4ee270842fdb6d43aacc873041, type: 2}
+  index: 0
 --- !u!20 &1375049869
 Camera:
   m_ObjectHideFlags: 0
@@ -246,14 +261,14 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 11.213197
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetTexture: {fileID: 8400000, guid: 0d3de1d09e39f493d8267463980b14f3, type: 2}
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1

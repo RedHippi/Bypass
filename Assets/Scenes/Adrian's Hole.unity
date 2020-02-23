@@ -429,8 +429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -343, y: -0.0000038147}
-  m_SizeDelta: {x: 191.8, y: 163.4}
+  m_AnchoredPosition: {x: -253, y: 83}
+  m_SizeDelta: {x: 201.8, y: 177.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &443468358
 MonoBehaviour:
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: f142ce39300234e98a5564461239c7eb, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -481,6 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyGame: AdrianScene
+  tp: {fileID: 0}
+  index: 0
 --- !u!1 &586897773
 GameObject:
   m_ObjectHideFlags: 0
