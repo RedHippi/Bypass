@@ -283,6 +283,8 @@ MonoBehaviour:
   taskbar: {fileID: 1133254626762997234, guid: e7e59f325101d27489101bf4b40083e8, type: 3}
   windowPrefab: {fileID: 6481577056985824119, guid: 572c08323239e6747bb00619db9834fb,
     type: 3}
+  MyImage: {fileID: 0}
+  MyName: New Text
 --- !u!222 &5618775058850870089
 CanvasRenderer:
   m_ObjectHideFlags: 0

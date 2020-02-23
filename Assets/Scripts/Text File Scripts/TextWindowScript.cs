@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class TextWindowScript : WindowScript
+public class TextWindowScript : WindowManager
 {
-
+    public TextAsset contentText;
+    private string textFilePath;
+    private TMP_Text contentTMP;
+    
     void Start()
     {
-    }
+        textFilePath = "Text Files/" + MyName.Substring(0, MyName.Length - 4);
+        contentText = Resources.Load<TextAsset>(textFilePath);
+        contentTMP = transform.Find("Body/Viewport/Content").GetComponent<TMP_Text>();
+        contentTMP.text = contentText.text;
 
-    public override void ReadInput(GameObject g)
-    {
-        if (g.name == "Mini") { IconParent.GetComponent<TextIconScript>().ToggleMin(); } //Run minimize on IconParent
-        if (g.name == "Close") { IconParent.GetComponent<TextIconScript>().CloseWindow(); }
+        RectTransform contentRT = transform.Find("Body/Viewport/Content").GetComponent<RectTransform>();
+        contentRT.sizeDelta = new Vector2(contentTMP.preferredWidth * 0.75f, contentTMP.preferredHeight + 10);
     }
 }
