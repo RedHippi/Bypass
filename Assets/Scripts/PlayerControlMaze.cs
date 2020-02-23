@@ -36,7 +36,7 @@ public class PlayerControlMaze : MonoBehaviour
         _body.transform.position += _inputs * Time.deltaTime * speed;
     }
 
-    void OnCollisionEnter()  //Plays sound whenever collision detected
+    void OnCollisionEnter2D(Collision2D collision)  //Plays sound whenever collision detected
     {
         GetComponent<AudioSource>().Play();
     }
