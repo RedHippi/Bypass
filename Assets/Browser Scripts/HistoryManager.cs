@@ -15,6 +15,21 @@ public struct Date
     {
         return ((int)month + 1).ToString() + "/" + day.ToString() + "/" + year.ToString();
     }
+
+    //0 means the dates are equal. -1 means this is more recent.
+    public int CompareDates(Date y)
+    {
+        if (this.year > y.year) { return -1; }
+        else if (this.year < y.year) { return 1; }
+
+        if ((int)this.month > (int)y.month) { return -1; }
+        else if ((int)this.month < (int)y.month) { return 1; }
+
+        if (this.day > y.day) { return -1; }
+        else if (this.day < y.day) { return 1; }
+
+        return 0;
+    }
 }
 
 [Serializable]
@@ -52,7 +67,7 @@ public class HistoryManager : MonoBehaviour
         sizeFitter = historySite.GetComponent<ContentSizeFitter>();
 
         //Should probably sort, then push to a stack. But I doubt this is a problem.
-        pastSites.Sort((s1, s2) => CompareDates(s1.dateVisited, s2.dateVisited));
+        pastSites.Sort((s1, s2) => s1.dateVisited.CompareDates(s2.dateVisited));
         CreateLinks();
     }
     
@@ -62,7 +77,7 @@ public class HistoryManager : MonoBehaviour
 
         for(int i = 0; i < pastSites.Count; i++)
         {
-            if(CompareDates(date, pastSites[i].dateVisited) == -1)
+            if(date.CompareDates(pastSites[i].dateVisited) == -1)
             {
                 pastSites.Insert(i, visit);
                 return;
@@ -87,7 +102,7 @@ public class HistoryManager : MonoBehaviour
 
         for (int i = 0; i < pastSites.Count; i++)
         {
-            if(CompareDates(pastSites[i].dateVisited, currentDate) != 0)
+            if(pastSites[i].dateVisited.CompareDates(currentDate) != 0)
             {
                 //Make some blank space
                 TMPro.TextMeshProUGUI blank = Instantiate(textPrefab) as TMPro.TextMeshProUGUI;
@@ -124,21 +139,6 @@ public class HistoryManager : MonoBehaviour
         {
             GameObject.Destroy(historySite.transform.GetChild(i).gameObject);
         }
-    }
-
-    //0 means the dates are equal. -1 means x is more recent.
-    private int CompareDates(Date x, Date y)
-    {
-        if (x.year > y.year) { return -1; }
-        else if (x.year < y.year) { return 1; }
-
-        if ((int)x.month > (int)y.month) { return -1; }
-        else if ((int)x.month < (int)y.month) { return 1; }
-
-        if (x.day > y.day) { return -1; }
-        else if (x.day < y.day) { return 1; }
-
-        return 0;
     }
 
     public void UpdateHistory(Site site)
