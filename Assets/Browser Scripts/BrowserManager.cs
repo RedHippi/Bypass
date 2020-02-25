@@ -151,6 +151,8 @@ public class BrowserManager : MonoBehaviour
     //not the address bar.
     public void CheckURL(string url)
     {
+        //TODO: Strip out www at the start of the string
+        url = url.ToLower();
         if (!displaying)
         {
             if (sitesDic.ContainsKey(url))

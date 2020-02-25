@@ -26,8 +26,8 @@ public class EmailSearch : MonoBehaviour
         string[] split = test.Trim(' ').Split('/');
 
         if(split.Length != 3) { return false; }
-        if(split[0].Length != 2 || !int.TryParse(split[0], out month)) { return false; }
-        if(split[1].Length != 2 || !int.TryParse(split[1], out day)) { return false; }
+        if(split[0].Length > 2 || !int.TryParse(split[0], out month)) { return false; }
+        if(split[1].Length > 2 || !int.TryParse(split[1], out day)) { return false; }
         if(split[2].Length != 4 || !int.TryParse(split[2], out year)) { return false; }
         if(month < 1 || month > 12) { return false; }
 
@@ -53,11 +53,11 @@ public class EmailSearch : MonoBehaviour
         return true;
     }
 
-    //For now, the query can be max one word
     public void SearchEmails(string query)
     {
         if (!Input.GetKeyDown(KeyCode.Return)) { return; }
         if (query == "") { emailSite.displaySearch = false; emailSite.UpdateEmailPanel(); return; }
+        query = query.ToLower();
         string filter = filterDropdown.options[filterDropdown.value].text;
         emailSite.displaySearch = true;
         emailSite.queriedEmails.Clear();
@@ -83,14 +83,14 @@ public class EmailSearch : MonoBehaviour
             switch (filter)
             {
                 case "Names":
-                    if (emailSite.emails[i].senderName.Contains(query))
+                    if (emailSite.emails[i].senderName.ToLower().Contains(query))
                     {
                         emailSite.queriedEmails.Add(i);
                     }
                     break;
 
                 case "Emails":
-                    if (emailSite.emails[i].senderEmail.Contains(query))
+                    if (emailSite.emails[i].senderEmail.ToLower().Contains(query))
                     {
                         emailSite.queriedEmails.Add(i);
                     }
@@ -116,15 +116,15 @@ public class EmailSearch : MonoBehaviour
         switch (filter)
         {
             case "Names":
-                placeHolderText.text = "Search by name...";
+                placeHolderText.text = "Format: John Smith";
                 break;
 
             case "Emails":
-                placeHolderText.text = "Search by email...";
+                placeHolderText.text = "Format: example@site.com";
                 break;
 
             case "Dates":
-                placeHolderText.text = "MM/DD/YYYY";
+                placeHolderText.text = "Format: MM/DD/YYYY";
                 break;
         }
     }

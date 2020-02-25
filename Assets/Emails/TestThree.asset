@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5436a4e6d700cb642b328bfe8175b6d7, type: 3}
   m_Name: TestThree
   m_EditorClassIdentifier: 
-  senderEmail: maleka@andrew.cmu.edu
-  senderName: Snuff Films
+  senderEmail: master@films.com
+  senderName: Film Experts
   dateSent:
     day: 19
     month: 0
     year: 2020
   subject: A new release!
-  body: Just for you, watch as we dismemeber this poor man who was walking back home
-    from work ;)
+  body: 'Check out our latest release!
+
+
+    As always, visit www.films.com for the
+    latest updates.'
