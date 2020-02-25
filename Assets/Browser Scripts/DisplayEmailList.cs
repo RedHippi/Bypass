@@ -38,6 +38,8 @@ public class DisplayEmailList : MonoBehaviour
     public void UpdateEmailPanel()
     {
         RemoveChildren();
+        numPages = (displaySearch) ? Mathf.CeilToInt((float)queriedEmails.Count / listSize) : numPages;
+        numPages = (numPages <= 0) ? 1 : numPages;
 
         for (int i = (currentPage - 1) * listSize; i < currentPage * listSize; i++)
         {

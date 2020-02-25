@@ -32,7 +32,7 @@ public class HistoryManager : MonoBehaviour
     private VerticalLayoutGroup verticalLayout;
     private ContentSizeFitter sizeFitter;
 
-    private void Start()
+    private void Awake()
     {
         historySite = this.transform.gameObject;
         verticalLayout = historySite.GetComponent<VerticalLayoutGroup>();
@@ -126,6 +126,7 @@ public class HistoryManager : MonoBehaviour
         CreateLinks();
     }
 
+    //TODO: Make history consistent across different browser clones
     //TODO: Add padding from the left, looks ugly as is.
     //TODO: Icons?
 }
