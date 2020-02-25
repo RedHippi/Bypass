@@ -122,4 +122,6 @@ public class DisplayEmailList : MonoBehaviour
         date.text = "-------------------- " + emails[emailID].dateSent.ProduceDate() + "--------------------";
         body.text = emails[emailID].body;
     }
+
+    //TODO: Account for longish emails (scrollRect?)
 }

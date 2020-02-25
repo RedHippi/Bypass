@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5436a4e6d700cb642b328bfe8175b6d7, type: 3}
+  m_Name: TestEight
+  m_EditorClassIdentifier: 
+  senderEmail: spam@spammer.com
+  senderName: Spam Man
+  dateSent:
+    day: 2
+    month: 2
+    year: 2018
+  subject: Spam message
+  body: Just making sure that you can flip pages.
