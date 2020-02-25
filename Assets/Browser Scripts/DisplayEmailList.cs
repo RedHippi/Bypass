@@ -10,36 +10,47 @@ public class DisplayEmailList : MonoBehaviour
     private int listSize = 7;
     [SerializeField]
     private GameObject headerPrefab;
+    public bool displaySearch;
+    public List<int> queriedEmails;
 
     private GameObject pageOne;
     private GameObject pageTwo;
-    private int numPages;
-    private int currentPage = 1; //Starts at 1
     private GameObject emailsPanel;
     private GameObject emailContents;
     private TMPro.TextMeshProUGUI pageText;
-
     private int currentSite = 1; //1 or 2
+    private int numPages;
+    private int currentPage = 1; //Starts at 1
 
     void Awake()
     {
         pageOne = this.transform.GetChild(0).gameObject;
         pageTwo = this.transform.GetChild(1).gameObject;
-        pageText = pageOne.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>();
-        emailsPanel = pageOne.transform.GetChild(2).gameObject;
-        emailContents = pageTwo.transform.GetChild(2).gameObject;
+        pageText = pageOne.transform.GetChild(4).GetComponent<TMPro.TextMeshProUGUI>();
+        emailsPanel = pageOne.transform.GetChild(3).gameObject;
+        emailContents = pageTwo.transform.GetChild(1).gameObject;
         emails.Sort((s1, s2) => s1.dateSent.CompareDates(s2.dateSent));
         numPages = Mathf.CeilToInt((float) emails.Count / listSize);
 
         UpdateEmailPanel();
     }
 
-    void UpdateEmailPanel()
+    public void UpdateEmailPanel()
     {
         RemoveChildren();
+
         for (int i = (currentPage - 1) * listSize; i < currentPage * listSize; i++)
         {
-            if(i >= emails.Count) { break; }
+            Email current;
+            int index;
+
+            if (displaySearch)
+            {
+                if(i >= queriedEmails.Count) { break; }
+                index = queriedEmails[i]; current = emails[index];
+            } else if(i >= emails.Count) { break; }
+            else { current = emails[i]; index = i; }
+
             GameObject temp = Instantiate(headerPrefab);
             temp.transform.SetParent(emailsPanel.transform);
             temp.transform.localScale = Vector3.one;
@@ -48,11 +59,11 @@ public class DisplayEmailList : MonoBehaviour
             TMPro.TextMeshProUGUI subject = temp.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
             TMPro.TextMeshProUGUI date = temp.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>();
 
-            sender.text = emails[i].senderName;
-            subject.text = emails[i].subject;
-            date.text = emails[i].dateSent.ProduceDate();
+            sender.text = current.senderName;
+            subject.text = current.subject;
+            date.text = current.dateSent.ProduceDate();
 
-            int tmp = i;
+            int tmp = index;
             Button button = temp.GetComponent<Button>();
             button.onClick.AddListener(() =>
             {

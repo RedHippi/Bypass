@@ -30,6 +30,29 @@ public struct Date
 
         return 0;
     }
+
+    public bool ValidDate()
+    {
+        List<Date.Month> list1 = new List<Date.Month>();
+        List<Date.Month> list2 = new List<Date.Month>();
+
+        list1.Add(Date.Month.January); list1.Add(Date.Month.March);
+        list1.Add(Date.Month.May); list1.Add(Date.Month.July);
+        list1.Add(Date.Month.August); list1.Add(Date.Month.October);
+        list1.Add(Date.Month.December);
+
+        list2.Add(Date.Month.April); list2.Add(Date.Month.June);
+        list2.Add(Date.Month.September); list2.Add(Date.Month.November);
+
+        if (list1.Contains(this.month)) { return true; }
+        if (list2.Contains(this.month) && this.day <= 30) { return true; }
+
+        bool leapYear = (this.year % 4 == 0 && (this.year % 100 != 0 || this.year % 400 == 0));
+
+        if (this.day <= 28 || (leapYear && this.day <= 29)) { return true; }
+
+        return false;
+    }
 }
 
 [Serializable]

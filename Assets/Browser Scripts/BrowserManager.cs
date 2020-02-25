@@ -137,7 +137,7 @@ public class BrowserManager : MonoBehaviour
         {
             currentlyActiveSite = site;
             site.site.SetActive(true);
-            obj = site.site.transform.GetChild(site.defaultPage).gameObject;
+            obj = site.site.transform.GetChild(site.defaultPage).gameObject; 
         }
 
         obj.SetActive(true);
@@ -147,6 +147,8 @@ public class BrowserManager : MonoBehaviour
         return obj;
     }
 
+    //Use this function when calling this function from stuff that's
+    //not the address bar.
     public void CheckURL(string url)
     {
         if (!displaying)
@@ -166,5 +168,13 @@ public class BrowserManager : MonoBehaviour
             loadingIcon.SetActive(false);
             CheckURL(url);
         }
+    }
+
+    //The Unity inspector only accepts functions with <= 1 parameter, so I 
+    //have to do this stupid hack now...
+    public void EnterPressed(string url)
+    {
+        if (!Input.GetKeyDown(KeyCode.Return)) { return; }
+        CheckURL(url);
     }
 }

@@ -74,29 +74,6 @@ public class SetDate : MonoBehaviour
         }
     }
 
-    private bool ValidDate(Date date)
-    {
-        List<Date.Month> list1 = new List<Date.Month>();
-        List<Date.Month> list2 = new List<Date.Month>();
-
-        list1.Add(Date.Month.January);list1.Add(Date.Month.March);
-        list1.Add(Date.Month.May); list1.Add(Date.Month.July);
-        list1.Add(Date.Month.August); list1.Add(Date.Month.October);
-        list1.Add(Date.Month.December);
-
-        list2.Add(Date.Month.April); list2.Add(Date.Month.June);
-        list2.Add(Date.Month.September); list2.Add(Date.Month.November);
-
-        if(list1.Contains(date.month)) { return true; }
-        if(list2.Contains(date.month) && date.day <= 30) { return true; }
-
-        bool leapYear = (date.year % 4 == 0 && (date.year % 100 != 0 || date.year % 400 == 0));
-
-        if(date.day <= 28 || (leapYear && date.day <= 29)) { return true; }
-
-        return false;
-    }
-
     public void ChangeCurrentDate()
     {
         Date date = new Date();
@@ -105,7 +82,7 @@ public class SetDate : MonoBehaviour
         date.day = int.Parse(dayDrop.options[dayDrop.value].text);
         date.year = int.Parse(yearDrop.options[yearDrop.value].text);
 
-        if (ValidDate(date))
+        if (date.ValidDate())
         {
             currentDate = date;
             dateDisplay.text = date.ProduceDate();
