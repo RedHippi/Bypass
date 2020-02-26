@@ -1,45 +1,61 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+[Serializable]
+public class User
+{
+    public string username;
+    public string password;
+    public List<Email> emails;
+}
+
 
 public class DisplayEmailList : MonoBehaviour
 {
     //For testing only; switch to using the Resource folder later
-    public List<Email> emails;
+    public List<User> users;
     [SerializeField]
     private int listSize = 7;
     [SerializeField]
     private GameObject headerPrefab;
+
+    [HideInInspector]
     public bool displaySearch;
+    [HideInInspector]
+    public List<Email> currentEmails;
+    [HideInInspector]
     public List<int> queriedEmails;
 
-    private GameObject pageOne;
-    private GameObject pageTwo;
+    [Header("Sub-pages")]
+    public GameObject listEmails;
+    public GameObject listEmail;
+    public GameObject login;
+    public GameObject loginFail;
+
+    private bool failed = false;
     private GameObject emailsPanel;
     private GameObject emailContents;
     private TMPro.TextMeshProUGUI pageText;
-    private int currentSite = 1; //1 or 2
     private int numPages;
     private int currentPage = 1; //Starts at 1
+    private BrowserManager browser;
+    private User currentUser = null;
 
     void Awake()
     {
-        pageOne = this.transform.GetChild(0).gameObject;
-        pageTwo = this.transform.GetChild(1).gameObject;
-        pageText = pageOne.transform.GetChild(4).GetComponent<TMPro.TextMeshProUGUI>();
-        emailsPanel = pageOne.transform.GetChild(3).gameObject;
-        emailContents = pageTwo.transform.GetChild(1).gameObject;
-        emails.Sort((s1, s2) => s1.dateSent.CompareDates(s2.dateSent));
-        numPages = Mathf.CeilToInt((float) emails.Count / listSize);
-
-        UpdateEmailPanel();
+        pageText = listEmails.transform.GetChild(4).GetComponent<TMPro.TextMeshProUGUI>();
+        emailsPanel = listEmails.transform.GetChild(3).gameObject;
+        emailContents = listEmail.transform.GetChild(1).gameObject;
+        browser = FindObjectOfType<BrowserManager>();
     }
 
     public void UpdateEmailPanel()
     {
         RemoveChildren();
         numPages = (displaySearch) ? Mathf.CeilToInt((float)queriedEmails.Count / listSize) 
-                                   : Mathf.CeilToInt((float)emails.Count / listSize);
+                                   : Mathf.CeilToInt((float)currentEmails.Count / listSize);
         numPages = (numPages <= 0) ? 1 : numPages;
 
         for (int i = (currentPage - 1) * listSize; i < currentPage * listSize; i++)
@@ -50,9 +66,9 @@ public class DisplayEmailList : MonoBehaviour
             if (displaySearch)
             {
                 if(i >= queriedEmails.Count) { break; }
-                index = queriedEmails[i]; current = emails[index];
-            } else if(i >= emails.Count) { break; }
-            else { current = emails[i]; index = i; }
+                index = queriedEmails[i]; current = currentEmails[index];
+            } else if(i >= currentEmails.Count) { break; }
+            else { current = currentEmails[i]; index = i; }
 
             GameObject temp = Instantiate(headerPrefab);
             temp.transform.SetParent(emailsPanel.transform);
@@ -70,7 +86,7 @@ public class DisplayEmailList : MonoBehaviour
             Button button = temp.GetComponent<Button>();
             button.onClick.AddListener(() =>
             {
-                SwitchPage();
+                browser.SwitchPage(listEmail);
                 DisplayEmail(tmp);
             });
         }
@@ -95,23 +111,6 @@ public class DisplayEmailList : MonoBehaviour
         UpdateEmailPanel();
     }
 
-    private void FlipActive(GameObject webpage, bool value)
-    {
-        for(int i = 0; i < webpage.transform.childCount; i++)
-        {
-            webpage.transform.GetChild(i).gameObject.SetActive(value);
-        }
-        webpage.SetActive(value);
-    }
-
-    public void SwitchPage()
-    {
-        bool value = (currentSite == 1) ? false : true;
-        currentSite = (currentSite == 1) ? 2 : 1;
-        FlipActive(pageOne, value);
-        FlipActive(pageTwo, !value);
-    }
-
     public void DisplayEmail(int emailID)
     {
         //emailContents must be active here
@@ -120,10 +119,41 @@ public class DisplayEmailList : MonoBehaviour
         TMPro.TextMeshProUGUI date = emailContents.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>();
         TMPro.TextMeshProUGUI body = emailContents.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>();
 
-        sender.text = "Sender: " + emails[emailID].senderName + " [" + emails[emailID].senderEmail + "]";
-        subject.text = "Subject: " + emails[emailID].subject;
-        date.text = "-------------------- " + emails[emailID].dateSent.ProduceDate() + "--------------------";
-        body.text = emails[emailID].body;
+        sender.text = "Sender: " + currentEmails[emailID].senderName + " [" + currentEmails[emailID].senderEmail + "]";
+        subject.text = "Subject: " + currentEmails[emailID].subject;
+        date.text = "-------------------- " + currentEmails[emailID].dateSent.ProduceDate() + "--------------------";
+        body.text = currentEmails[emailID].body;
+    }
+
+
+    public void CheckLogin()
+    {
+        TMPro.TMP_InputField userField;
+        TMPro.TMP_InputField passField;
+        int index = (failed) ? 2 : 1;
+        GameObject parent = (failed) ? loginFail : login;
+        userField = parent.transform.GetChild(index).GetComponent<TMPro.TMP_InputField>();
+        passField = parent.transform.GetChild(index+1).GetComponent<TMPro.TMP_InputField>();
+        string username = userField.text; string password = passField.text;
+        userField.text = ""; passField.text = "";
+
+        for (int i = 0; i < users.Count; i++)
+        {
+            if (users[i].username == username && users[i].password == password)
+            {
+                failed = false;
+                currentUser = users[i];
+                currentEmails = users[i].emails;
+                currentEmails.Sort((s1, s2) => s1.dateSent.CompareDates(s2.dateSent));
+                numPages = Mathf.CeilToInt((float)currentEmails.Count / listSize);
+                UpdateEmailPanel();
+                browser.SwitchPage(listEmails);
+                return;
+            }
+        }
+
+        failed = true;
+        browser.SwitchPage(loginFail);
     }
 
     //TODO: Account for longish emails (scrollRect?)

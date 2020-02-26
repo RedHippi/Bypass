@@ -5,19 +5,26 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Assertions;
 
+
+[Serializable]
+public class PageLoadInfo
+{
+    public bool displayQuick = false;
+    [Tooltip("Left value is the minimum time, right is the maximum.")]
+    public Vector2 totalLoadingRange = new Vector2(1, 4);
+    //TODO: Add "cache" so the website doesn't take forever to load every time.
+}
+
+
 [Serializable]
 public class Site
 {
     public string url;
-    [Tooltip("If Display Quick is set to true, this site will not be added to the history page.")]
     [TextArea]
     public string historyText = "Default description!";
     public GameObject site;
-    public bool displayQuick = false;
     [Tooltip("Set to -1 if this website only has one page to load. Otherwise, set to the index of the starting page.")]
-    public int defaultPage = -1;
-    [Tooltip("Left value is the minimum time, right is the maximum.")]
-    public Vector2 totalLoadingRange = new Vector2(1,4);
+    public List<PageLoadInfo> subpagesInfo;
 }
 
 public class BrowserManager : MonoBehaviour
@@ -41,7 +48,8 @@ public class BrowserManager : MonoBehaviour
     private Dictionary<string, Site> sitesDic;
     private ScrollRect scrollComp;
     private GameObject currentlyActivePage; //Should always be only one
-    private Site currentlyActiveSite = null; 
+    private Site currentlyActiveSite = null;
+    private int currentlyActiveIndex;
     private Vector2 contentStartPosition;
     private bool displaying = false;
     private Coroutine co;
@@ -54,7 +62,7 @@ public class BrowserManager : MonoBehaviour
         for(int i = 0; i < sites.Count; i++)
         {
             sitesDic.Add(sites[i].url, sites[i]);
-            if(sites[i].defaultPage != -1) { DeactivateChildren(sites[i].site); }
+            if(sites[i].subpagesInfo.Count != 1) { DeactivateChildren(sites[i].site); }
             sites[i].site.SetActive(false);
         }
 
@@ -92,18 +100,19 @@ public class BrowserManager : MonoBehaviour
         }
     }
 
-    IEnumerator DisplayPage(Site site)
+    IEnumerator DisplayPage(Site site, int index = 0)
     {
         GameObject obj = site.site;
-        if(site.displayQuick) { DisplayPageQuick(obj, site); yield break; }
+        if(site.subpagesInfo[index].displayQuick) { DisplayPageQuick(obj, site, index); yield break; }
         history.UpdateHistory(site);
         displaying = true;
-        float loadTime = UnityEngine.Random.Range(site.totalLoadingRange.x, site.totalLoadingRange.y);
+        float loadTime = UnityEngine.Random.Range(site.subpagesInfo[index].totalLoadingRange.x, 
+                                                  site.subpagesInfo[index].totalLoadingRange.y);
         float totalTime = 0;
         int currentIndex = 0;
 
         loadingIcon.SetActive(true);
-        obj = DisplayPageQuick(obj, site); //Same set-up, so why not?
+        obj = DisplayPageQuick(obj, site, index); //Same set-up, so why not?
         float[] waitArr = new float[obj.transform.childCount]; //child count > 0
         DeactivateChildren(obj);
         GenerateRandomSplit(loadTime, waitArr);
@@ -125,26 +134,48 @@ public class BrowserManager : MonoBehaviour
     }
 
     //I had to change this function to account for possibly multiple pages per website.
-    private GameObject DisplayPageQuick(GameObject obj, Site site = null)
+    private GameObject DisplayPageQuick(GameObject obj, Site site = null, int index = 0)
     {
         if (currentlyActivePage) {
             currentlyActivePage.GetComponent<RectTransform>().anchoredPosition = contentStartPosition;
             currentlyActivePage.SetActive(false);
             if(currentlyActiveSite != null && currentlyActiveSite.site != null) { currentlyActiveSite.site.SetActive(false); }
+            currentlyActiveIndex = -1;
         }
 
-        if (site != null && site.defaultPage != -1)
+        if (site != null && site.subpagesInfo.Count != 1)
         {
             currentlyActiveSite = site;
             site.site.SetActive(true);
-            obj = site.site.transform.GetChild(site.defaultPage).gameObject; 
+            obj = site.site.transform.GetChild(index).gameObject; //By convention, set the starting page at index 0
         }
 
         obj.SetActive(true);
         currentlyActivePage = obj;
         scrollComp.content = obj.GetComponent<RectTransform>();
         contentStartPosition = obj.GetComponent<RectTransform>().anchoredPosition;
+        currentlyActiveIndex = index;
         return obj;
+    }
+
+    public void SwitchPage(GameObject newsite)
+    {
+        if(currentlyActiveSite == null || currentlyActiveSite.site == null) { return; }
+        if (currentlyActiveSite.subpagesInfo.Count == 1 || currentlyActivePage == null) { return; }
+        int index = newsite.transform.GetSiblingIndex();
+        if(currentlyActiveSite.subpagesInfo.Count < index + 1) { return; }
+
+        if (!displaying)
+        {
+            co = StartCoroutine(DisplayPage(currentlyActiveSite, index));
+        }
+        else
+        {
+            displaying = false;
+            StopCoroutine(co);
+            loadingIcon.SetActive(false);
+            co = StartCoroutine(DisplayPage(currentlyActiveSite, index));
+        }
     }
 
     //Use this function when calling this function from stuff that's

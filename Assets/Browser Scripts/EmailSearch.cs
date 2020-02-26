@@ -78,26 +78,26 @@ public class EmailSearch : MonoBehaviour
                 break;
         }
 
-        for (int i = 0; i < emailSite.emails.Count; i++)
+        for (int i = 0; i < emailSite.currentEmails.Count; i++)
         {
             switch (filter)
             {
                 case "Names":
-                    if (emailSite.emails[i].senderName.ToLower().Contains(query))
+                    if (emailSite.currentEmails[i].senderName.ToLower().Contains(query))
                     {
                         emailSite.queriedEmails.Add(i);
                     }
                     break;
 
                 case "Emails":
-                    if (emailSite.emails[i].senderEmail.ToLower().Contains(query))
+                    if (emailSite.currentEmails[i].senderEmail.ToLower().Contains(query))
                     {
                         emailSite.queriedEmails.Add(i);
                     }
                     break;
 
                 case "Dates":
-                    if (date.CompareDates(emailSite.emails[i].dateSent) == 0)
+                    if (date.CompareDates(emailSite.currentEmails[i].dateSent) == 0)
                     {
                         emailSite.queriedEmails.Add(i);
                     }
@@ -128,5 +128,4 @@ public class EmailSearch : MonoBehaviour
                 break;
         }
     }
-
 }

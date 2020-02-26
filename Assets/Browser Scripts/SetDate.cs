@@ -40,6 +40,7 @@ public class SetDate : MonoBehaviour
         this.transform.localScale = Vector3.zero;
     }
 
+    //Surely there's a smarter way?
     private Date.Month ConvertMonth(string str)
     {
         switch (str)
