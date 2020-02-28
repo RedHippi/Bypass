@@ -8,9 +8,8 @@ public class TaskbarManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject taskbarIcon;
-    [SerializeField]
-    private GameObject windows;
 
+    private GameObject windows;
     private int maxOpen = 3;
     private List<GameObject> windowsOpen;
     private List<GameObject> taskbarSlots;
@@ -18,6 +17,12 @@ public class TaskbarManager : MonoBehaviour
 
     private void Start()
     {
+        windows = new GameObject();
+        windows = Instantiate(windows, Vector3.zero, Quaternion.identity);
+        windows.name = "Windows";
+        windows.transform.SetParent(this.transform.parent.parent);
+        windows.transform.SetSiblingIndex(windows.transform.parent.childCount - 2);
+
         windowsOpen = new List<GameObject>();
         taskbarSlots = new List<GameObject>();
         regionTwo = this.gameObject;

@@ -17,7 +17,10 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         //Move Left
-        if(Input.GetKey(KeyCode.A)) { /*Move Left*/}
+        if(Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(-speed * Time.deltaTime, 0, 0);
+        }
         //Move Right
         if (Input.GetKey(KeyCode.D)) { /*Move Right*/}
 
