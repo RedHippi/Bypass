@@ -3547,8 +3547,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba4c0345b7dccb449580cb911538c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskbarIcon: {fileID: 0}
-  windows: {fileID: 0}
+  taskbarIcon: {fileID: 955207317563916088, guid: 7bba727d549c01848a59a9332bd5fdd6,
+    type: 3}
 --- !u!1 &6390011607907661676
 GameObject:
   m_ObjectHideFlags: 0

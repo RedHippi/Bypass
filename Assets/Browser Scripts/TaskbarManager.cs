@@ -90,11 +90,12 @@ public class TaskbarManager : MonoBehaviour
         windowsOpen[index].SetActive(!windowsOpen[index].activeSelf);
     }
 
-    public void CreateWindow(GameObject window, Vector3 pos)
+    public void CreateWindow(GameObject window, Vector3 pos, string name)
     {
         GameObject canvas = this.transform.parent.gameObject;
         GameObject newWindow = Instantiate(window, pos, Quaternion.identity);
         newWindow.transform.SetParent(windows.transform);
+        newWindow.GetComponent<WindowManager>().SetName(name);
         windowsOpen.Add(newWindow);
 
         GameObject newIcon = Instantiate(taskbarIcon);
