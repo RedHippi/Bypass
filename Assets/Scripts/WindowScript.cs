@@ -54,7 +54,7 @@ public class WindowScript : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(MousePos);
     }
 
-    public void ReadInput(GameObject g)
+    public virtual void ReadInput(GameObject g)
     {
         if(g.name == "Mini") { IconParent.GetComponent<IconScript>().ToggleMin(); } //Run minimize on IconParent
         if(g.name == "Close") { IconParent.GetComponent<IconScript>().CloseWindow(); }
