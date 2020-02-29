@@ -12,6 +12,9 @@ public class PageLoadInfo
     public bool displayQuick = false;
     [Tooltip("Left value is the minimum time, right is the maximum.")]
     public Vector2 totalLoadingRange = new Vector2(1, 4);
+    public string pageURL;
+    [Tooltip("Should this page be accessible if the user types the address in the URL?")]
+    public bool publicAccess = true;
     //TODO: Add "cache" so the website doesn't take forever to load every time.
 }
 
@@ -19,7 +22,6 @@ public class PageLoadInfo
 [Serializable]
 public class Site
 {
-    public string url;
     [TextArea]
     public string historyText = "Default description!";
     public GameObject site;
@@ -38,6 +40,7 @@ public class BrowserManager : MonoBehaviour
     private GameObject error404;
     [SerializeField]
     private HistoryManager history;
+    public TMPro.TMP_InputField searchBar;
 
     [Header("Site Stuff")]
     [SerializeField]
@@ -46,6 +49,7 @@ public class BrowserManager : MonoBehaviour
     private GameObject loadingIcon;
 
     private Dictionary<string, Site> sitesDic;
+    private Dictionary<string, int> pageIndex;
     private ScrollRect scrollComp;
     private GameObject currentlyActivePage; //Should always be only one
     private Site currentlyActiveSite = null;
@@ -58,10 +62,18 @@ public class BrowserManager : MonoBehaviour
     {
         scrollComp = this.transform.GetComponent<ScrollRect>();
         sitesDic = new Dictionary<string, Site>();
+        pageIndex = new Dictionary<string, int>();
 
-        for(int i = 0; i < sites.Count; i++)
+        for (int i = 0; i < sites.Count; i++)
         {
-            sitesDic.Add(sites[i].url, sites[i]);
+            for(int j = 0; j < sites[i].subpagesInfo.Count; j++)
+            {
+                if (sites[i].subpagesInfo[j].publicAccess)
+                {
+                    sitesDic.Add(sites[i].subpagesInfo[j].pageURL, sites[i]);
+                    pageIndex.Add(sites[i].subpagesInfo[j].pageURL, j);
+                }
+            }
             if(sites[i].subpagesInfo.Count != 1) { DeactivateChildren(sites[i].site); }
             sites[i].site.SetActive(false);
         }
@@ -104,7 +116,7 @@ public class BrowserManager : MonoBehaviour
     {
         GameObject obj = site.site;
         if(site.subpagesInfo[index].displayQuick) { DisplayPageQuick(obj, site, index); yield break; }
-        history.UpdateHistory(site);
+        history.UpdateHistory(site, index);
         displaying = true;
         float loadTime = UnityEngine.Random.Range(site.subpagesInfo[index].totalLoadingRange.x, 
                                                   site.subpagesInfo[index].totalLoadingRange.y);
@@ -143,6 +155,7 @@ public class BrowserManager : MonoBehaviour
             currentlyActiveIndex = -1;
         }
 
+        //The count check is for webpages that have no children that are also webpages
         if (site != null && site.subpagesInfo.Count != 1)
         {
             currentlyActiveSite = site;
@@ -155,6 +168,10 @@ public class BrowserManager : MonoBehaviour
         scrollComp.content = obj.GetComponent<RectTransform>();
         contentStartPosition = obj.GetComponent<RectTransform>().anchoredPosition;
         currentlyActiveIndex = index;
+        if(site != null && site.subpagesInfo[index].pageURL != "")
+        {
+            searchBar.text = site.subpagesInfo[index].pageURL;
+        }
         return obj;
     }
 
@@ -188,9 +205,11 @@ public class BrowserManager : MonoBehaviour
         {
             if (sitesDic.ContainsKey(url))
             {
-                co = StartCoroutine(DisplayPage(sitesDic[url]));
+                int index = pageIndex[url];
+                co = StartCoroutine(DisplayPage(sitesDic[url], index));
             }
-            else
+            //TODO: Make special page for forbidden access
+            else 
             {
                 DisplayPageQuick(error404);
             }

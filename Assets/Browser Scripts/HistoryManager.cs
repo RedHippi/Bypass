@@ -21,7 +21,6 @@ public class HistoryManager : MonoBehaviour
     public TMPro.TextMeshProUGUI textPrefab;
     public GameObject linkPrefab;
     public BrowserManager browser;
-    public TMPro.TMP_InputField searchBar;
 
     [Header("Formatting")]
     public int linkSize;
@@ -90,7 +89,6 @@ public class HistoryManager : MonoBehaviour
             int tmp = i; //Otherwise, i will be out of range inside the listener
             link.GetComponent<Button>().onClick.AddListener(() =>
             {
-                searchBar.text = pastSites[tmp].url;
                 browser.CheckURL(pastSites[tmp].url);
             });
 
@@ -113,11 +111,11 @@ public class HistoryManager : MonoBehaviour
         }
     }
 
-    public void UpdateHistory(Site site)
+    public void UpdateHistory(Site site, int index)
     {
         Visited visit = new Visited();
         Date current = FindObjectOfType<SetDate>().currentDate;
-        visit.url = site.url;
+        visit.url = site.subpagesInfo[index].pageURL;
         visit.displayedText = site.historyText;
         visit.dateVisited = current;
 

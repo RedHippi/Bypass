@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4262fe3a3e741ae4fb4edaaacb30a475, type: 3}
+  m_Name: Auction
+  m_EditorClassIdentifier: 
+  boardTitle: '/FC/: Film Connoisseurs'
+  threadTitle: Vintage Film Found! Sold to the highest bidder!
+  posts:
+  - name: master
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: 
+    message: 'Hello all! Back again with another fresh find. Found this clip while
+      walking home the other day. I can give you my gaurantee that it''s premium
+      :)
+
+
+      As always, 30 min gap between bids, after that, the auction''s over.
+
+
+      Starting
+      price: $500'
+  - name: Test1
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: 
+    message: $900
+  - name: Test2
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: 
+    message: Buy it for $1200
+  - name: Test3
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: 
+    message: $1000
+  - name: Test2
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: Test3
+    message: You went down, moron
+  - name: Test3
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: Test2
+    message: $3000. High enough for you?
+  - name: Test2
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: Test3
+    message: Damn. $4000
+  - name: Test1
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: 
+    message: $10000
+  - name: Test2
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: Test1
+    message: Aight I'm out
+  - name: master
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: Test1
+    message: No one else raised, so the film is yours. Hope you enjoy it :)
+  - name: Test1
+    datePosted:
+      day: 1
+      month: 0
+      year: 2000
+    reply: master
+    message: Can't wait ^^
