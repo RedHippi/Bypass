@@ -1,0 +1,16 @@
+thePerson
+notfun
+1: hello there
+2: hello!
+1: how are you?
+1: it's a good morning today
+2: ehh, could be better...
+1: aww, what happened?
+2: just life
+1: i feel you, i feel you
+1: life just gets ya down sometimes
+1: well, look on the bright side...
+2: what's the bright side?
+1: uh
+1: it's bright outside!
+2: ...
