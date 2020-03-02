@@ -21,7 +21,7 @@ public class CLScript : MonoBehaviour
 
     private void Awake()
     {
-        totalChat = "";
+        string oneMessage = "";
         string[] lines = textStuff.text.Split("\n"[0]);
         firstUsername = lines[0];
         secondUsername = lines[1];
@@ -30,19 +30,20 @@ public class CLScript : MonoBehaviour
             string[] chatMessage = lines[i].Split(":"[0]);
             if (chatMessage[0].Equals("1"))
             {
-                totalChat += "<color=blue>[" + firstUsername + "]</color>:" + chatMessage[1] + "\n";
+                oneMessage = "<color=blue>[" + firstUsername + "]</color>:" + chatMessage[1];
             }
             else
             {
-                totalChat += "<color=red>[" + secondUsername + "]</color>:" + chatMessage[1] + "\n";
+                oneMessage = "<color=red>[" + secondUsername + "]</color>:" + chatMessage[1];
             }
-            totalChat = totalChat.Replace("\r", "");
+            oneMessage = oneMessage.Replace("\r", "");
+            GameObject g = Instantiate(chatObject, parent);
+            g.GetComponentInChildren<TMP_Text>().SetText(oneMessage);
         }
     }
     void Start()
     {
-        GameObject g = Instantiate(chatObject, parent);
-        g.GetComponentInChildren<TMP_Text>().SetText(totalChat);
+        
     }
 
     // Update is called once per frame

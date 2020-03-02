@@ -14,3 +14,7 @@ notfun
 1: uh
 1: it's bright outside!
 2: ...
+2: that's true?
+2: i guess?
+2: but like...
+1: hmm?

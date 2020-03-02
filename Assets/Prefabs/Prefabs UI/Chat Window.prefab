@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 877969903876904380}
   - component: {fileID: 7371877078899514723}
   - component: {fileID: 2925051049643240429}
+  - component: {fileID: 9072101337830688198}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16290456, g: 0.13105197, b: 0.8962264, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -249,6 +250,31 @@ MonoBehaviour:
     type: 3}
   parent: {fileID: 3956869951959373142}
   textStuff: {fileID: 4900000, guid: 7a608de5a94da68409ac79d35df42831, type: 3}
+--- !u!114 &9072101337830688198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132131071032786491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
 --- !u!1 &4389669878924237849
 GameObject:
   m_ObjectHideFlags: 0
