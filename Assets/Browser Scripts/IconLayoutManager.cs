@@ -6,6 +6,7 @@ public class IconLayoutManager : MonoBehaviour
     //the mouse is dropping an icon on top of another,
     //pls change this cause it's pretty ugly.
     public bool[,] iconGrid;
+    public BoundStorage bound; //1 = X , 2 = Y
     private RectTransform canvasRect;
     Vector3[] corners = new Vector3[4]; //BottomLeft, TopLeft, TopRight, BottomRight
 
@@ -17,7 +18,7 @@ public class IconLayoutManager : MonoBehaviour
     private int offsetX;
     private int offsetY;
 
-    void Start()
+    void Awake()
     {
         canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
         canvasRect.GetWorldCorners(corners);
@@ -25,6 +26,11 @@ public class IconLayoutManager : MonoBehaviour
         offsetY = gridY / 2;
         //Assert.IsNotNull(canvasRect);
         ForceLayout();
+
+        //Loading information from corners into our BoundStorage ScriptableObject
+        bound.Bound1 = (corners[1].x, corners[2].x);
+        bound.Bound2 = (corners[0].y, corners[1].y);
+
     }
 
     private Vector2 ComputePosition(int x, int y)

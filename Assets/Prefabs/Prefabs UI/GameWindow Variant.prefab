@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330edfa0d8e674e869971c6186ab333c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyGame: Maze1
+  MyGame: Moving1
 --- !u!1001 &8021521744405986822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 6481577056985824119, guid: 572c08323239e6747bb00619db9834fb,
         type: 3}
       propertyPath: m_Name
-      value: GameWindow
+      value: GameWindow Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6481577058390271551, guid: 572c08323239e6747bb00619db9834fb,
         type: 3}

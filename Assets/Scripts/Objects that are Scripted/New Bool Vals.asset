@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6369c5055bba648c191ad8fbde54834c, type: 3}
-  m_Name: GameViewPass
+  m_Script: {fileID: 11500000, guid: 41835f0c142c34d2f86757fe882199bf, type: 3}
+  m_Name: New Bool Vals
   m_EditorClassIdentifier: 
-  cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  vals: 0000
+  monitored: 0
+  scanOn: 0
