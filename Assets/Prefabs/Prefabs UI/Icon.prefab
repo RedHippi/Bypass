@@ -284,7 +284,7 @@ MonoBehaviour:
   windowPrefab: {fileID: 6481577056985824119, guid: 572c08323239e6747bb00619db9834fb,
     type: 3}
   MyImage: {fileID: 0}
-  MyName: Game
+  MyName: New Text
 --- !u!222 &5618775058850870089
 CanvasRenderer:
   m_ObjectHideFlags: 0

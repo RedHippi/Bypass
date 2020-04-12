@@ -13,6 +13,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyGame: Moving1
+--- !u!114 &6676943208611507269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3936432466039260529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8741224cd33f84091b42c1e91e997bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bound: {fileID: 11400000, guid: 00350bb0e643b4ff6a87215b0bede8fe, type: 2}
+  posPercent: {fileID: 11400000, guid: 93fd2f5f0fb024474946b94161279fc0, type: 2}
 --- !u!1001 &8021521744405986822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -238,7 +252,7 @@ PrefabInstance:
     - target: {fileID: 6481577056985824119, guid: 572c08323239e6747bb00619db9834fb,
         type: 3}
       propertyPath: m_Name
-      value: GameWindow Variant
+      value: NightLifeWindow
       objectReference: {fileID: 0}
     - target: {fileID: 6481577058390271551, guid: 572c08323239e6747bb00619db9834fb,
         type: 3}

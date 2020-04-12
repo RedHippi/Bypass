@@ -192,11 +192,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166913356}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -189.1098, y: -229.73683, z: 540.27545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 302851914}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &217625456 stripped
@@ -211,6 +211,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a6ccc7fbd4fbb4a94014ee61bb84c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &302851913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302851914}
+  m_Layer: 0
+  m_Name: Computer Base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &302851914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302851913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 189.1098, y: 229.73683, z: -540.27545}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2113673863}
+  - {fileID: 1370217915}
+  - {fileID: 166913359}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &423925035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -741,7 +774,7 @@ RectTransform:
   - {fileID: 104686955}
   - {fileID: 98256195}
   - {fileID: 448381359}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 302851914}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -761,6 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db01ead761085f84bbaf1cf0e10c5d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bound: {fileID: 0}
   gridX: 100
   gridY: 100
 --- !u!1 &2113673860
@@ -840,10 +874,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113673860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -189.1098, y: -229.73683, z: 530.27545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 302851914}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6604347656855705199
