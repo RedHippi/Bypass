@@ -16,14 +16,9 @@ public class SceneInterpreter : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CloseMyGame()
     {
-
-    }
-
-    public void Test()
-    {
+        SceneManager.UnloadSceneAsync(MyGame);
     }
 
     

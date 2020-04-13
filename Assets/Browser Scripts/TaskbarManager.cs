@@ -76,6 +76,8 @@ public class TaskbarManager : MonoBehaviour
     {
         GameObject remove = windowsOpen[index];
         GameObject icon = taskbarSlots[index];
+        remove.GetComponent<WindowManager>().InformOfDeath();
+        remove.GetComponent<SceneInterpreter>().CloseMyGame();
         windowsOpen.RemoveAt(index);
         taskbarSlots.RemoveAt(index);
         Destroy(remove);
@@ -90,12 +92,13 @@ public class TaskbarManager : MonoBehaviour
         windowsOpen[index].SetActive(!windowsOpen[index].activeSelf);
     }
 
-    public void CreateWindow(GameObject window, Vector3 pos, string name)
+    public void CreateWindow(GameObject window, Vector3 pos, string name, GameObject icon)
     {
         GameObject canvas = this.transform.parent.gameObject;
         GameObject newWindow = Instantiate(window, pos, Quaternion.identity);
         newWindow.transform.SetParent(windows.transform);
         newWindow.GetComponent<WindowManager>().SetName(name);
+        newWindow.GetComponent<WindowManager>().SetIcon(icon);
         windowsOpen.Add(newWindow);
 
         GameObject newIcon = Instantiate(taskbarIcon);
@@ -104,6 +107,5 @@ public class TaskbarManager : MonoBehaviour
         UpdateButtons(windowsOpen.Count - 1);
     }
 
-    //TODO: Check if there are too many open windows
     //TODO: Write code to toggle child force exapand for dynamic sizing
 }
