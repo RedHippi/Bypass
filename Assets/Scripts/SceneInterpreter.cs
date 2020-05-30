@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*  The SceneInterpreter is used for our game windows that relay
+ *  information from another scene. The interpreter helps open and close
+ *  this scene. 
+                                                                            */
 public class SceneInterpreter : MonoBehaviour
 {
     public string MyGame;
@@ -16,6 +20,8 @@ public class SceneInterpreter : MonoBehaviour
 
     }
 
+
+    //When we go to close our window, this function is invoked to close the corresponding
     public void CloseMyGame()
     {
         SceneManager.UnloadSceneAsync(MyGame);
