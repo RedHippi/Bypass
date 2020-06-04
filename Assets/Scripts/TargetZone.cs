@@ -10,10 +10,8 @@ public class TargetZone : MonoBehaviour
 
     public void TaskAttempt()
     {
-        Debug.Log("Called it");
         if(Tasks.scanOn)
         {
-            Debug.Log("Made it past check");
             if (Tasks.monitored == TaskNum)
             {
                 Tasks.vals[TaskNum] = true;
