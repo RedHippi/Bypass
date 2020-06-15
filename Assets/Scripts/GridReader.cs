@@ -8,8 +8,8 @@ public class GridReader : MonoBehaviour
     //Please set this!!!! TODO find a way to alert the developer of this fact
     public TextAsset file;
 
-    [SerializeField]
-    private GameObject[] MapTiles;
+    [SerializeField] private GameObject[] MapTiles;
+    [SerializeField] private GameObject BackGround;
 
     private float TileSize
     {
@@ -20,6 +20,7 @@ public class GridReader : MonoBehaviour
     {
 
         CreateMap();
+
     }
 
     private void CreateMap()
@@ -29,7 +30,10 @@ public class GridReader : MonoBehaviour
         int MapX = Map[0].Length;
         int MapY = Map.Length;
 
-        Vector2 MapStart = new Vector2(0, 0);
+        Bounds back = BackGround.GetComponent<SpriteRenderer>().sprite.bounds;
+        float MapStartX = (back.min.x * BackGround.transform.localScale.x) + BackGround.transform.position.x + TileSize / 2;
+        float MapStartY = (back.max.y * BackGround.transform.localScale.y) + BackGround.transform.position.y - TileSize / 2;
+        Vector2 MapStart = new Vector2(MapStartX, MapStartY);
 
         for(int y = 0; y < MapY; y++)
         {
