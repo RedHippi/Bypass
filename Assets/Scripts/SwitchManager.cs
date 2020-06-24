@@ -17,6 +17,7 @@ public class SwitchManager : MonoBehaviour
         for(int i = 0; i < Switches.Length; i++)
         {
             Switches[i].GetComponent<SwitchChild>().SetIndex(i);
+            Switches[i].GetComponent<SwitchChild>().MyManager = gameObject;
         }
     }
 

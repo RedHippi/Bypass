@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3773585, g: 0.31861874, b: 0.31861874, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -164,14 +164,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 514
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -266,7 +266,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 42, y: -52.800003}
-  m_SizeDelta: {x: 71.51001, y: 96.91}
+  m_SizeDelta: {x: 60.51001, y: 85.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3653395619906348059
 MonoBehaviour:
@@ -283,7 +283,8 @@ MonoBehaviour:
   taskbar: {fileID: 1133254626762997234, guid: e7e59f325101d27489101bf4b40083e8, type: 3}
   windowPrefab: {fileID: 6481577056985824119, guid: 572c08323239e6747bb00619db9834fb,
     type: 3}
-  MyImage: {fileID: 0}
+  windowOpened: 0
+  MyImage: {fileID: 6604347656397832017}
   MyName: New Text
 --- !u!222 &5618775058850870089
 CanvasRenderer:

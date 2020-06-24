@@ -77,7 +77,9 @@ public class TaskbarManager : MonoBehaviour
         GameObject remove = windowsOpen[index];
         GameObject icon = taskbarSlots[index];
         remove.GetComponent<WindowManager>().InformOfDeath();
-        remove.GetComponent<SceneInterpreter>().CloseMyGame();
+        SceneInterpreter interpreter = remove.GetComponent<SceneInterpreter>();
+        if(interpreter != null)
+            interpreter.CloseMyGame();
         windowsOpen.RemoveAt(index);
         taskbarSlots.RemoveAt(index);
         Destroy(remove);
@@ -92,20 +94,25 @@ public class TaskbarManager : MonoBehaviour
         windowsOpen[index].SetActive(!windowsOpen[index].activeSelf);
     }
 
-    public void CreateWindow(GameObject window, Vector3 pos, string name, GameObject icon)
+    public void CreateWindow(GameObject window, Vector3 pos, string name, GameObject icon, Image image)
     {
         GameObject canvas = this.transform.parent.gameObject;
         GameObject newWindow = Instantiate(window, pos, Quaternion.identity);
         newWindow.transform.SetParent(windows.transform);
-        newWindow.GetComponent<WindowManager>().SetName(name);
-        newWindow.GetComponent<WindowManager>().SetIcon(icon);
+        WindowManager newWinManager = newWindow.GetComponent<WindowManager>();
+        newWinManager.SetName(name);
+        newWinManager.SetIcon(icon);
+        newWinManager.SetImage(image);
         windowsOpen.Add(newWindow);
 
         GameObject newIcon = Instantiate(taskbarIcon);
+        newIcon.GetComponent<IconData>().SetupIcon(image, name);
         newIcon.transform.SetParent(regionTwo.transform); //TODO: Change the icon message
         taskbarSlots.Add(newIcon);
         UpdateButtons(windowsOpen.Count - 1);
     }
 
-    //TODO: Write code to toggle child force exapand for dynamic sizing
+    //TODO: Write code to toggle child force expand for dynamic sizing
+
+    //But...what if no?
 }

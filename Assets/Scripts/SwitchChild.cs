@@ -11,14 +11,13 @@ public class SwitchChild : MonoBehaviour
 
     private int MyIndex;
 
-    [SerializeField]
-    private GameObject MyManager;
+    public GameObject MyManager;
 
+    public Sprite Enabled, Disabled;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
         On = false;
     }
 
@@ -26,14 +25,15 @@ public class SwitchChild : MonoBehaviour
     void Update()
     {
         if (On)
-            GetComponent<SpriteRenderer>().color = Color.green;
+            GetComponent<SpriteRenderer>().sprite = Enabled;
         else
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().sprite = Disabled;
     }
 
     public void ToggleOn()
     {
         On = !On;
+
     }
 
     private bool HasSelf()

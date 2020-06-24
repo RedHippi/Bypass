@@ -17,16 +17,16 @@ public class IconManager : MonoBehaviour
     private IconLayoutManager layout;
     private Vector2 initialPos;
     private bool dragging = false;
-    public bool windowOpened = false;
+
+    [HideInInspector]public bool windowOpened = false;
 
     //[HideInInspector]
-    public Sprite MyImage;
+    public Image MyImage;
     //[HideInInspector]
     public string MyName;
 
     void Awake()
     {
-        MyImage = GetComponentInChildren<Image>().sprite;
         MyName = GetComponentInChildren<TMP_Text>().text;
     }
 
@@ -48,7 +48,7 @@ public class IconManager : MonoBehaviour
             windowOpened = true;
             GameObject canvas = this.transform.parent.gameObject;
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2);
-            taskbar.CreateWindow(windowPrefab, center, MyName, gameObject);
+            taskbar.CreateWindow(windowPrefab, center, MyName, gameObject, MyImage);
         }
     }
 
