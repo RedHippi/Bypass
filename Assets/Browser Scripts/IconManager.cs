@@ -17,6 +17,7 @@ public class IconManager : MonoBehaviour
     private IconLayoutManager layout;
     private Vector2 initialPos;
     private bool dragging = false;
+    public bool windowOpened = false;
 
     //[HideInInspector]
     public Sprite MyImage;
@@ -41,12 +42,13 @@ public class IconManager : MonoBehaviour
     {
         //TODO: Highlight if one click.
 
-        if (eventData.clickCount == 2)
+        if (!windowOpened && eventData.clickCount == 2)
         {
             //Doesn't quite work; problems with scaling. But good for now.
+            windowOpened = true;
             GameObject canvas = this.transform.parent.gameObject;
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2);
-            taskbar.CreateWindow(windowPrefab, center, MyName);
+            taskbar.CreateWindow(windowPrefab, center, MyName, gameObject);
         }
     }
 

@@ -4,28 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*  The SceneInterpreter is used for our game windows that relay
+ *  information from another scene. The interpreter helps open and close
+ *  this scene. 
+                                                                            */
 public class SceneInterpreter : MonoBehaviour
 {
     public string MyGame;
-    public TexturePasser tp;
-    public int index;
-    private Camera Subject;
 
     // On Start, we are opening our Game
-    void Start()//TODO: Get camera to map its view to the image.
+    void Start()
     {
-        
-        //SceneManager.LoadScene(MyGame,LoadSceneMode.Additive);
+        SceneManager.LoadScene(MyGame,LoadSceneMode.Additive);
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
-    public void Test()
+    //When we go to close our window, this function is invoked to close the corresponding
+    public void CloseMyGame()
     {
-        SceneManager.LoadScene(MyGame, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(MyGame);
     }
 
     

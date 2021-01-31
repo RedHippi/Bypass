@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &7421084481835397381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5193871912093102945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8741224cd33f84091b42c1e91e997bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bound: {fileID: 11400000, guid: 00350bb0e643b4ff6a87215b0bede8fe, type: 2}
+  posPercent: {fileID: 11400000, guid: 93fd2f5f0fb024474946b94161279fc0, type: 2}
+--- !u!1001 &1419493492460879972
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3653395619906348059, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: MyName
+      value: Night Life
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653395619906348059, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: windowPrefab
+      value: 
+      objectReference: {fileID: 3936432466039260529, guid: a2bd55a82a295489880e378f10452ad6,
+        type: 3}
+    - target: {fileID: 6604347656397832017, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656397832017, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656397832017, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656397832017, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ca9bf0382466b4b969b05a3ee9ae227f,
+        type: 3}
+    - target: {fileID: 6604347656666392911, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_text
+      value: 'Night Life
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656666392911, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656666392911, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656666392911, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 72.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 71.51001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 96.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911172, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604347656823911173, guid: 68929476d9fe54f47a79b67a70ef369d,
+        type: 3}
+      propertyPath: m_Name
+      value: NightLifeIcon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68929476d9fe54f47a79b67a70ef369d, type: 3}
+--- !u!1 &5193871912093102945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6604347656823911173, guid: 68929476d9fe54f47a79b67a70ef369d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1419493492460879972}
+  m_PrefabAsset: {fileID: 0}
